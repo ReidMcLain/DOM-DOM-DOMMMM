@@ -1,11 +1,14 @@
 .square {
-    background-color: black;
-    height:50px;
-    width: 50px;
-    margin: 4px;
+  background-color: black;
+  height: 50px;
+  width: 50px;
+  margin: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .divContainer {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
