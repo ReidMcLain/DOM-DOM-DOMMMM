@@ -1,41 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let Btn = document.createElement("button");
-    let BtnText = document.createTextNode("Add Square");
-    Btn.appendChild(BtnText);
+    const Btn = document.createElement("button");
+    Btn.textContent = "Add Square";
     document.body.appendChild(Btn);
-    let divContainer = document.createElement("div");
+
+    const divContainer = document.createElement("div");
+    divContainer.className = "divContainer";
     document.body.appendChild(divContainer);
-    divContainer.classList.add("divContainer");
 
     let idCounter = 0
 
-    const randomColors = [
-        "black",
-        "pink",
-        "brown",
-        "red",
-        "orange",
-        "yellow",
-        "green",
-        "cyan",
-        "blue",
-        "purple"
-    ];
-
     Btn.addEventListener('click', function () {
         let newDiv = document.createElement("div");
-        newDiv.classList.add("square");
+
+        newDiv.className = "square";
         idCounter++;
         newDiv.id = idCounter;
         newDiv.innerHTML = idCounter;
         divContainer.appendChild(newDiv);
+
         newDiv.addEventListener("mouseover", function (event) {
             newDiv.style.color = "white";
         })
         newDiv.addEventListener("mouseout", function (event) {
             newDiv.style.color = "transparent";
         })
-        newDiv.addEventListener("click", setRandomColor);
+        newDiv.addEventListener("click", function () {
+                newDiv.style.backgroundColor = getRandomColor();
+        });
         newDiv.addEventListener("dblclick", removeSquare);
     });
 
@@ -67,10 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function setRandomColor(event) {
-        const randomNum = Math.floor(Math.random() * randomColors.length);
-        event.target.style.backgroundColor = randomColors[randomNum];
-        event.target.style.color = randomColors[randomNum];
+    function getRandomColor() {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
 });
